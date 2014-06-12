@@ -118,7 +118,7 @@ var paths = {
 		var mean_theta = PI/5+e/(10+e)*PI*3/10;
 		var angle_switching_freq = Math.random();//e/(10+e)*0.5;
 		angle_switching_freq = 0;
-		var var_theta = 25/49*mean_theta*mean_theta;
+		var var_theta = 25/36*mean_theta*mean_theta;
 		var start = [Math.random()*(width/2-2*margin)+margin, Math.random()*(height/2-2*margin)+margin];
 		var prevTheta = PI;
 		verts.push(start);

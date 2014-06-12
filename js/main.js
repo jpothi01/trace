@@ -3,7 +3,7 @@ $(function(){
 		var level = window.localStorage.level;
 		this.level = level ? level-1 : 0;
 		this.state = "example";
-		this.score_thresh = 75;
+		this.score_thresh = 70;
 		var score = window.localStorage.score;
 		this.score = parseInt(score) ? parseInt(score) : 0;
 		this.trace_buffer = [];
