@@ -3,7 +3,7 @@ PI = Math.PI;
 var paths = {
 
 
-	evaluateTrace: function(trace,target,screen_area){
+	evaluateTrace: function(trace,target,screen_diag){
 		var n = Math.floor(target.length/trace.length);
 		var target_downsampled = paths.downsamplePath(target,n,trace.length);
 		var coupling_sequence = paths.frechetDist(trace,target_downsampled);
@@ -14,7 +14,7 @@ var paths = {
 			return memo + paths.dist(el[0],el[1]);
 		},0)/lines.length;
 		var alpha = 0.01; 
-		return {score:Math.floor(100-Math.min(frechet_dist,100)),lines:lines};
+		return {score:Math.floor(100-100*Math.min(6*frechet_dist/screen_diag,1)),lines:lines};
 	},
 
 	// adapted from http://www.mathworks.com/matlabcentral/fileexchange/31922-discrete-frechet-distance
@@ -117,7 +117,8 @@ var paths = {
 		var e = Math.exp(l);
 		var mean_theta = PI/5+e/(10+e)*PI*3/10;
 		var angle_switching_freq = Math.random();//e/(10+e)*0.5;
-		var var_theta = mean_theta*mean_theta;
+		angle_switching_freq = 0;
+		var var_theta = 25/49*mean_theta*mean_theta;
 		var start = [Math.random()*(width/2-2*margin)+margin, Math.random()*(height/2-2*margin)+margin];
 		var prevTheta = PI;
 		verts.push(start);

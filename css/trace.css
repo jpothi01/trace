@@ -16,13 +16,12 @@ h1 {
 	font-family: "Georgia";
 	font-size: 50px;
 	color: white;
-	margin: auto;
+	margin-right: auto;
 }
 
 .btn-start {
 	width: 50%;
 	height: 100px;
-	margin-top: 100px;
 }
 
 #highscore {

@@ -21,6 +21,7 @@ $(function(){
 		this.canvas = $('#maincanvas')[0];
 		this.canvas.width  = window.innerWidth;
 	  	this.canvas.height = window.innerHeight-50;
+	  	this.canvas_diag = Math.sqrt(this.canvas.width*this.canvas.width+this.canvas.height*this.canvas.height);
 	  	this.canvas.addEventListener('mousedown',touch.canvasOnDown);
 	  	this.canvas.addEventListener('touchstart',touch.canvasOnDown);
 	  	this.canvas.addEventListener('mousemove',touch.canvasOnMove);
@@ -82,7 +83,7 @@ $(function(){
 	Game.prototype.evaluateTrace = function(){
 		if(this.trace_buffer.length > 0){
 			this.setState("evaluate");
-			var evaluation = paths.evaluateTrace(this.trace_buffer,this.target_path);
+			var evaluation = paths.evaluateTrace(this.trace_buffer,this.target_path,this.canvas_diag);
 			var delta_score = evaluation.score;
 			var lines = evaluation.lines;
 			this.score += delta_score;
@@ -129,4 +130,6 @@ $(function(){
 		high_score = 0;
 	}
 	$("#highscore").text(high_score);
+
+	$('.btn-start').css("margin-top",window.innerHeight/3-60);
 });
