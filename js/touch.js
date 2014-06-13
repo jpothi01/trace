@@ -19,7 +19,7 @@ var touch = {
 	},
 
 	getPos: function(canvas,e){
-		if(touch.is_mobile){
+		if(e.type=="touchstart" || e.type=="touchmove" || e.type=="touchend"){
 			return touch.getTouchPos(canvas,e);
 		}
 		return touch.getMousePos(canvas,e);
