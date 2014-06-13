@@ -2,8 +2,6 @@ var touch = {
 
 	trace_buffer: [],
 
-	trace_buffer_size: 1,
-
 	touched: false,
 
 	touch_locked: false,
@@ -50,16 +48,15 @@ var touch = {
 
 	canvasOnMove: function(e){
 		e.preventDefault();
-		if(touch.state=="trace" && touch.touched){
+		if(touch.state=="trace" && touch.touched && !touch.locked){
 			var pos = touch.getPos(this,e);
 			var ctx = this.getContext('2d');
-			touch.trace_buffer.push(pos);
-			if(touch.trace_buffer.length == touch.trace_buffer_size && !touch.touch_locked){
-				touch_locked = true;
-				touch.traceDeltaCallback();
-				touch.trace_buffer = [];
-				touch_locked = false;
-			}
+			touch.trace_buffer = pos;
+			// Lock trace buffer when drawing
+			touch.touch_locked = true;
+			touch.traceDeltaCallback();
+			touch.trace_buffer = [];
+			touch.touch_locked = false;
 		}	
 	},
 

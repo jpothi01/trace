@@ -7,6 +7,7 @@ $(function(){
 		this.score = parseInt(score) ? parseInt(score) : 0;
 		this.trace_buffer = [];
 		this.target_path = [];
+		this.cancel_trace_thresh = 100;
 		this.example_color = "#FFFF00";
 		this.trace_color = "#00FF00";
 		this.success_thresh = 70;
@@ -78,8 +79,12 @@ $(function(){
 
 	Game.prototype.getTraceDelta = function(){
 		var buffer = this.trace_buffer.length > 0 ? 
-			[this.trace_buffer[this.trace_buffer.length-1]].concat(touch.trace_buffer) :
-			touch.trace_buffer;
+			[this.trace_buffer[this.trace_buffer.length-1], touch.trace_buffer]:
+			[touch.trace_buffer];
+		if(paths.dist(buffer[0],buffer[1]) > this.cancel_trace_thresh){
+			touch.reset();
+			this.trace_buffer = [];
+		}
 		graphics.drawPath(this.canvas,buffer,this.trace_color);
 		this.trace_buffer = this.trace_buffer.concat(touch.trace_buffer);
 	}
