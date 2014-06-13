@@ -169,10 +169,11 @@ var graphics = {
 		var ctx = canvas.getContext('2d');
 		ctx.strokeStyle = color ? color : "#FFFFFF";
 		ctx.lineWidth = graphics.default_line_width;
+		var delay = level > 4 ? 10 : 20;
 		graphics.path_animator.i = 0;
 		graphics.path_animator.ctx = ctx;
 		graphics.path_animator.path = path;	
-		graphics.path_animator.animate_path(20,10,callback);
+		graphics.path_animator.animate_path(20,delay,callback);
 		if(level >= 10){
 			graphics.fader.ctx = ctx;
 			var delay = 100;
