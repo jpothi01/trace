@@ -93,7 +93,7 @@ $(function(){
 	}
 
 	Game.prototype.evaluateTrace = function(){
-		if(this.trace_buffer.length > 0){
+		if(this.trace_buffer.length > 1){
 			this.setState("evaluate");
 			var evaluation = paths.evaluateTrace(this.trace_buffer,this.target_path,Math.min(this.canvas.width,this.canvas.height));
 			var delta_score = evaluation.score;
