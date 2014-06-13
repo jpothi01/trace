@@ -37,7 +37,7 @@ var touch = {
 			touch.touched = true;
 			var pos = touch.getPos(this,e);
 			var ctx = this.getContext('2d');
-			touch.trace_buffer.push(pos);
+			touch.trace_buffer = pos;
 			if(touch.trace_buffer.length == touch.trace_buffer_size){
 				touch.traceDeltaCallback();
 				touch.trace_buffer = null;
@@ -54,7 +54,7 @@ var touch = {
 			// Lock trace buffer when drawing
 			touch.touch_locked = true;
 			touch.traceDeltaCallback();
-			touch.trace_buffer = [];
+			touch.trace_buffer = null;
 			touch.touch_locked = false;
 		}	
 	},
