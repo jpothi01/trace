@@ -113,7 +113,6 @@ var paths = {
 		var mean_intervert_length = Math.min(height,width)/3;
 		var var_intervert_length = 20*20;
 		// Theta mean between pi/5 and pi/3, use logistic function
-		level = 10;
 		var l = level/4;
 		var e = Math.exp(l);
 		var mean_theta = PI/5+e/(10+e)*PI*3/10;
