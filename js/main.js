@@ -1,17 +1,19 @@
 $(function(){
 	function Game(){
 		var level = window.localStorage.level;
-		this.level = level ? level-1 : 0;
+		this.level = level ? level-1 : -1;
 		this.state = "example";
-		this.score_thresh = 70;
 		var score = window.localStorage.score;
 		this.score = parseInt(score) ? parseInt(score) : 0;
 		this.trace_buffer = [];
 		this.target_path = [];
 		this.example_color = "#FFFF00";
 		this.trace_color = "#00FF00";
+		this.success_thresh = 70;
+		this.highsuccess_thresh = 80;
 		this.success_color = "#FFFFFF";
 		this.success_lines_color = "#00FFFF";
+		this.highsuccess_lines_color = "#FF00FF";
 		this.error_color = "#FF0000";
 		this.error_lines_color = "#FF0000";
 		this.init();
@@ -52,7 +54,7 @@ $(function(){
 	}
 
 	Game.prototype.startOver = function(){
-		this.level = 0;
+		this.level = -1;
 		this.score = 0;
 		this.nextLevel();
 	}
@@ -88,8 +90,12 @@ $(function(){
 			var lines = evaluation.lines;
 			this.score += delta_score;
 			graphics.drawPath(this.canvas,this.target_path,this.example_color);
-			if(delta_score >= this.score_thresh){
-				graphics.animateLines(this.canvas,lines,this.success_lines_color);
+			if(delta_score >= this.success_thresh){
+				if(delta_score >= this.highsuccess_thresh){
+					graphics.animateLines(this.canvas,lines,this.highsuccess_lines_color);
+				} else { 
+					graphics.animateLines(this.canvas,lines,this.success_lines_color);
+				}
 				graphics.drawDeltaScore(this.display_canvas,delta_score,this.success_color);
 				setTimeout($.proxy(function(){
 					graphics.fade(this.canvas,20,20,$.proxy(this.nextLevel,this));
@@ -135,7 +141,7 @@ $(function(){
 		high_score = 0;
 	}
 	if(!high_level){
-		high_level = 1;
+		high_level = 0;
 	}
 	$("#highscore").text(high_score);
 	$("#highlevel").text(high_level);

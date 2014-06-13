@@ -14,7 +14,7 @@ var paths = {
 			return memo + paths.dist(el[0],el[1]);
 		},0)/lines.length;
 		var alpha = 0.01; 
-		return {score:Math.floor(100-100*Math.min(3.5*frechet_dist/min_canvas_dim,1)),lines:lines};
+		return {score:Math.floor(100-100*Math.min(3*frechet_dist/min_canvas_dim,1)),lines:lines};
 	},
 
 	// adapted from http://www.mathworks.com/matlabcentral/fileexchange/31922-discrete-frechet-distance
