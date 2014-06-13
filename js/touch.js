@@ -38,10 +38,8 @@ var touch = {
 			var pos = touch.getPos(this,e);
 			var ctx = this.getContext('2d');
 			touch.trace_buffer = pos;
-			if(touch.trace_buffer.length == touch.trace_buffer_size){
-				touch.traceDeltaCallback();
-				touch.trace_buffer = null;
-			}
+			touch.traceDeltaCallback();
+			touch.trace_buffer = null;
 		}
 	},
 
