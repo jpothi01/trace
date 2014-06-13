@@ -1,6 +1,6 @@
 var touch = {
 
-	trace_buffer: [],
+	trace_buffer: null,
 
 	touched: false,
 
@@ -9,11 +9,10 @@ var touch = {
 	is_mobile: false,
 
 	reset: function(){
-		touch.trace_buffer = [];
+		touch.trace_buffer = null;
 		touch.touch_locked = false;
 		touch.touched = false;
 		this.count = 0;
-		touch.is_mobile = isMobile.any();
 	},
 
 	getPos: function(canvas,e){
@@ -41,7 +40,7 @@ var touch = {
 			touch.trace_buffer.push(pos);
 			if(touch.trace_buffer.length == touch.trace_buffer_size){
 				touch.traceDeltaCallback();
-				touch.trace_buffer = [];
+				touch.trace_buffer = null;
 			}
 		}
 	},
