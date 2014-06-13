@@ -3,7 +3,7 @@ PI = Math.PI;
 var paths = {
 
 
-	evaluateTrace: function(trace,target,screen_diag){
+	evaluateTrace: function(trace,target,min_canvas_dim){
 		var n = Math.floor(target.length/trace.length);
 		var target_downsampled = paths.downsamplePath(target,n,trace.length);
 		var coupling_sequence = paths.frechetDist(trace,target_downsampled);
@@ -14,7 +14,7 @@ var paths = {
 			return memo + paths.dist(el[0],el[1]);
 		},0)/lines.length;
 		var alpha = 0.01; 
-		return {score:Math.floor(100-100*Math.min(6*frechet_dist/screen_diag,1)),lines:lines};
+		return {score:Math.floor(100-100*Math.min(3.5*frechet_dist/min_canvas_dim,1)),lines:lines};
 	},
 
 	// adapted from http://www.mathworks.com/matlabcentral/fileexchange/31922-discrete-frechet-distance

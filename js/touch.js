@@ -14,6 +14,7 @@ var touch = {
 		touch.trace_buffer = [];
 		touch.touch_locked = false;
 		touch.touched = false;
+		this.count = 0;
 		touch.is_mobile = isMobile.any();
 	},
 

@@ -83,7 +83,7 @@ $(function(){
 	Game.prototype.evaluateTrace = function(){
 		if(this.trace_buffer.length > 0){
 			this.setState("evaluate");
-			var evaluation = paths.evaluateTrace(this.trace_buffer,this.target_path,this.canvas_diag);
+			var evaluation = paths.evaluateTrace(this.trace_buffer,this.target_path,Math.min(this.canvas.width,this.canvas.height));
 			var delta_score = evaluation.score;
 			var lines = evaluation.lines;
 			this.score += delta_score;
@@ -113,9 +113,13 @@ $(function(){
 		window.localStorage.level = this.level;
 		window.localStorage.score = this.score;
 		var high_score = window.localStorage.high_score;
+		var high_level = window.localStorage.high_level;
 		if(!high_score || (this.score > high_score)){
 			window.localStorage.high_score = this.score;
 		} 
+		if(!high_level || (this.level > high_level)){
+			window.localStorage.high_level = this.level;
+		}
 	}
 
 	function start(){
@@ -126,10 +130,15 @@ $(function(){
 
 	$(".btn-start").click(start);
 	var high_score = window.localStorage.high_score;
+	var high_level = window.localStorage.high_level;
 	if(!high_score){
 		high_score = 0;
 	}
+	if(!high_level){
+		high_level = 1;
+	}
 	$("#highscore").text(high_score);
+	$("#highlevel").text(high_level);
 
 	$('.btn-start').css("margin-top",window.innerHeight/3-60);
 });

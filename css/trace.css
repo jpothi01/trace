@@ -17,6 +17,7 @@ h1 {
 	font-size: 50px;
 	color: white;
 	margin-right: auto;
+	margin-left: auto;
 }
 
 .btn-start {
@@ -24,8 +25,20 @@ h1 {
 	height: 100px;
 }
 
+.stats {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 #highscore {
 	margin-top: 20px;
+	float: left;
+}
+
+#highlevel {
+	margin-top: 20px;
+	float: right;
 }
 
 .gameplay {

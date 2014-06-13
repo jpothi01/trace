@@ -73,8 +73,9 @@ var graphics = {
 			ctx.lineWidth = graphics.default_line_width;
 			for(var i = 0; i < path.length-1; i++){
 				ctx.beginPath();
-				ctx.moveTo(path[i][0],path[i][1]);
-				ctx.lineTo(path[i+1][0],path[i+1][1]);
+				// Integerize floating point coordinates for optimization
+				ctx.moveTo((0.5+path[i][0])|0,(0.5+path[i][1])|0);
+				ctx.lineTo((0.5+path[i+1][0])|0,(0.5+path[i+1][1])|0);
 				ctx.stroke();
 			}
 		}
