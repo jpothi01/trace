@@ -74,8 +74,8 @@ var graphics = {
 			for(var i = 0; i < path.length-1; i++){
 				ctx.beginPath();
 				// Integerize floating point coordinates for optimization
-				ctx.moveTo((0.5+path[i][0])|0,(0.5+path[i][1])|0);
-				ctx.lineTo((0.5+path[i+1][0])|0,(0.5+path[i+1][1])|0);
+				ctx.moveTo((path[i][0]+0.5)|0,(path[i][1]+0.5)|0);
+				ctx.lineTo((path[i+1][0]+0.5)|0,(path[i+1][1]+0.5)|0);
 				ctx.stroke();
 			}
 		}
