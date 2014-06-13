@@ -81,7 +81,7 @@ $(function(){
 		var buffer = this.trace_buffer.length > 0 ? 
 			[this.trace_buffer[this.trace_buffer.length-1], touch.trace_buffer]:
 			[touch.trace_buffer];
-		if(paths.dist(buffer[0],buffer[1]) > this.cancel_trace_thresh){
+		if(buffer.length > 1 && paths.dist(buffer[0],buffer[1]) > this.cancel_trace_thresh){
 			touch.reset();
 			this.trace_buffer = [];
 		}
