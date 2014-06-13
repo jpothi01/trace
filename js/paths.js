@@ -14,7 +14,7 @@ var paths = {
 			return memo + paths.dist(el[0],el[1]);
 		},0)/lines.length;
 		var alpha = 0.01; 
-		return {score:Math.floor(100-100*Math.min(3*frechet_dist/min_canvas_dim,1)),lines:lines};
+		return {score:Math.floor(100-100*Math.min(3.5*frechet_dist/min_canvas_dim,1)),lines:lines};
 	},
 
 	// adapted from http://www.mathworks.com/matlabcentral/fileexchange/31922-discrete-frechet-distance
@@ -113,7 +113,8 @@ var paths = {
 		var mean_intervert_length = Math.min(height,width)/3;
 		var var_intervert_length = 20*20;
 		// Theta mean between pi/5 and pi/3, use logistic function
-		var l = (level-1)/5;
+		level = 10;
+		var l = level/4;
 		var e = Math.exp(l);
 		var mean_theta = PI/5+e/(10+e)*PI*3/10;
 		var angle_switching_freq = Math.random();//e/(10+e)*0.5;

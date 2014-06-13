@@ -11,9 +11,11 @@ $(function(){
 		this.trace_color = "#00FF00";
 		this.success_thresh = 70;
 		this.highsuccess_thresh = 80;
+		this.veryhighsuccess_thresh = 85;
 		this.success_color = "#FFFFFF";
-		this.success_lines_color = "#00FFFF";
-		this.highsuccess_lines_color = "#FF00FF";
+		this.success_lines_color = "#FFFFFF";
+		this.highsuccess_lines_color = "00FFFF";
+		this.veryhighsuccess_lines_color = "#FF00FF";
 		this.error_color = "#FF0000";
 		this.error_lines_color = "#FF0000";
 		this.init();
@@ -91,9 +93,11 @@ $(function(){
 			this.score += delta_score;
 			graphics.drawPath(this.canvas,this.target_path,this.example_color);
 			if(delta_score >= this.success_thresh){
-				if(delta_score >= this.highsuccess_thresh){
+				if(delta_score >= this.veryhighsuccess_thresh) {
+					graphics.animateLines(this.canvas,lines,this.veryhighsuccess_lines_color);
+				} else if (delta_score >= this.highsuccess_thresh) { 
 					graphics.animateLines(this.canvas,lines,this.highsuccess_lines_color);
-				} else { 
+				} else {
 					graphics.animateLines(this.canvas,lines,this.success_lines_color);
 				}
 				graphics.drawDeltaScore(this.display_canvas,delta_score,this.success_color);
