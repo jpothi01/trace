@@ -87,6 +87,7 @@ $(function(){
 			if(paths.dist(buffer[0],buffer[1]) > this.cancel_trace_thresh){
 				touch.reset();
 				this.trace_buffer = [];
+				graphics.paintBlack(this.canvas);
 			} else {
 				graphics.drawPath(this.canvas,buffer,this.trace_color);
 			}
@@ -121,6 +122,8 @@ $(function(){
 					graphics.fade(this.canvas,20,20,$.proxy(this.startOver,this));
 				},this),700);
 			}
+		} else {
+			graphics.paintBlack(this.canvas);
 		}
 	}
 
