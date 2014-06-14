@@ -59,8 +59,8 @@ var touch = {
 
 	canvasOnUp: function(e){
 		e.preventDefault();
-		if(touch.state=="trace" && touch.touched){
-			touch.touched = false;
+		touch.touched = false;
+		if(touch.state=="trace"){
 			touch.traceCallback();
 		}	
 	}

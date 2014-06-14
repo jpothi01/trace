@@ -81,6 +81,8 @@ $(function(){
 		var buffer = this.trace_buffer.length > 0 ? 
 			[this.trace_buffer[this.trace_buffer.length-1], touch.trace_buffer]:
 			[touch.trace_buffer];
+		// Protect against laggy UI by cancelling trace if touch samples are far apart
+		this.trace_buffer.push(touch.trace_buffer);
 		if(buffer.length > 1){
 			if(paths.dist(buffer[0],buffer[1]) > this.cancel_trace_thresh){
 				touch.reset();
@@ -89,11 +91,11 @@ $(function(){
 				graphics.drawPath(this.canvas,buffer,this.trace_color);
 			}
 		}
-		this.trace_buffer.push(touch.trace_buffer);
 	}
 
 	Game.prototype.evaluateTrace = function(){
-		if(this.trace_buffer.length > 1){
+		// Require at least 5 touch samples to prevent accidental touches from ruining game
+		if(this.trace_buffer.length > 5){
 			this.setState("evaluate");
 			var evaluation = paths.evaluateTrace(this.trace_buffer,this.target_path,Math.min(this.canvas.width,this.canvas.height));
 			var delta_score = evaluation.score;
