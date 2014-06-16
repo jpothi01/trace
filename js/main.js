@@ -7,7 +7,7 @@ $(function(){
 		this.score = parseInt(score) ? parseInt(score) : 0;
 		this.trace_buffer = [];
 		this.target_path = [];
-		this.cancel_trace_thresh = 100;
+		this.cancel_trace_thresh = 200;
 		this.example_color = "#FFFF00";
 		this.trace_color = "#00FF00";
 		this.success_thresh = 70;
